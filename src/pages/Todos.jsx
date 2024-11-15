@@ -1,7 +1,6 @@
-// src/pages/Todos.js
 import React, { useEffect, useState } from 'react';
 import api from '../api';
-import { Input, Button, List, Card, Typography, message, Layout, Row, Col } from 'antd';
+import { Input, Button, List, Card, Typography, message, Layout } from 'antd';
 
 const { Title } = Typography;
 const { Content } = Layout;
@@ -48,11 +47,18 @@ export default function Todos() {
     const fetchTodos = async () => {
         try {
             const response = await api.get('/todo');
-            setTodos(response.data);
+            console.log('API Response:', response.data);
+
+            // Extract todos from the "data" key
+            const fetchedTodos = Array.isArray(response.data?.data) ? response.data.data : [];
+            setTodos(fetchedTodos);
         } catch (error) {
             message.error('Failed to fetch todos');
+            setTodos([]); // Ensure todos is reset in case of an error
         }
     };
+
+
 
     const handleAddTodo = async () => {
         try {
@@ -86,7 +92,6 @@ export default function Todos() {
                 <Card bordered={false} style={styles.card}>
                     <Title level={2} style={{ textAlign: 'center' }}>Todo List</Title>
 
-                    {/* Todo Form */}
                     <div>
                         <Input
                             placeholder="Todo Name"
@@ -104,13 +109,12 @@ export default function Todos() {
                             type="primary"
                             onClick={handleAddTodo}
                             style={styles.button}
-                            disabled={!name || !description} // Disable button if fields are empty
+                            disabled={!name || !description}
                         >
                             Add Todo
                         </Button>
                     </div>
 
-                    {/* Todo List */}
                     <List
                         style={{ marginTop: '20px' }}
                         header={<div>Todo Items</div>}

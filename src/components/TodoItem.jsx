@@ -1,9 +1,7 @@
-// components/TodoItem.jsx
 import React from 'react';
 import { Checkbox, Button } from 'antd';
 
 const TodoItem = ({ todo, onDelete, onToggle }) => {
-    // Inline styles using const
     const styles = {
         todoItem: {
             display: 'flex',

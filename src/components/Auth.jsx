@@ -1,4 +1,3 @@
-// components/Auth.jsx
 import React, { useState } from 'react';
 import { Button, Input, Form } from 'antd';
 
@@ -7,14 +6,13 @@ const Auth = ({ onLogin }) => {
 
     const handleLogin = (values) => {
         setLoading(true);
-        // Simulate API call
+
         setTimeout(() => {
             setLoading(false);
             onLogin(values);
         }, 1000);
     };
 
-    // Inline styles using const
     const styles = {
         authContainer: {
             display: 'flex',

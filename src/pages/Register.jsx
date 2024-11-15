@@ -1,4 +1,3 @@
-// src/pages/Register.js
 import React, { useState } from 'react';
 import api from '../api';
 import { useNavigate } from 'react-router-dom';
@@ -14,6 +13,9 @@ const styles = {
         justifyContent: 'center',
         alignItems: 'center',
         background: '#f0f2f5',
+    },
+    formItem: {
+        width: '100%',
     },
     content: {
         width: '100%',
@@ -33,6 +35,8 @@ const styles = {
         display: 'flex',
         justifyContent: 'center',
         marginTop: '20px',
+        marginLeft: '50px'
+
     },
     loginButton: {
         textAlign: 'center',
@@ -66,10 +70,10 @@ export default function Register() {
                         name="register-form"
                         onFinish={handleRegister}
                         initialValues={{ email, password, name }}
-                        labelCol={{ span: 6 }} // Label width
-                        wrapperCol={{ span: 18 }} // Input width
+                        labelCol={{ span: 6 }}
+                        wrapperCol={{ span: 18 }}
                     >
-                        {/* Name Input */}
+
                         <Form.Item
                             label="Name"
                             name="name"
@@ -82,7 +86,7 @@ export default function Register() {
                             />
                         </Form.Item>
 
-                        {/* Email Input */}
+
                         <Form.Item
                             label="Email"
                             name="email"
@@ -95,7 +99,7 @@ export default function Register() {
                             />
                         </Form.Item>
 
-                        {/* Password Input */}
+
                         <Form.Item
                             label="Password"
                             name="password"
@@ -108,17 +112,14 @@ export default function Register() {
                             />
                         </Form.Item>
 
-                        {/* Register Button */}
                         <div style={styles.buttonContainer}>
-                            <Form.Item>
+                            <Form.Item style={styles.formItem}>
                                 <Button type="primary" block htmlType="submit">
                                     Register
                                 </Button>
                             </Form.Item>
                         </div>
                     </Form>
-
-                    {/* Login Button */}
                     <div style={styles.loginButton}>
                         <Button
                             type="link"

@@ -1,4 +1,3 @@
-// src/pages/Login.js
 import React, { useState } from 'react';
 import api from '../api';
 import { useNavigate } from 'react-router-dom';
@@ -14,6 +13,13 @@ const styles = {
         justifyContent: 'center',
         alignItems: 'center',
         background: '#f0f2f5',
+    },
+    buttonContainer: {
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        marginTop: '20px',
+        marginLeft: '50px'
     },
     content: {
         width: '100%',
@@ -52,13 +58,16 @@ export default function Login() {
                 email: values.email,
                 password: values.password,
             });
-            localStorage.setItem('token', response.data.token);
+            const { token, user } = response.data;
+            localStorage.setItem('token', token);
+            localStorage.setItem('user', JSON.stringify(user));
             navigate('/todos');
         } catch (error) {
             console.error('Login failed', error);
             message.error('Login failed, please check your credentials.');
         }
     };
+
 
     return (
         <Layout style={styles.layout}>
@@ -69,8 +78,8 @@ export default function Login() {
                         name="login-form"
                         onFinish={handleLogin}
                         initialValues={{ email, password }}
-                        labelCol={{ span: 6 }} // Label width
-                        wrapperCol={{ span: 18 }} // Input width
+                        labelCol={{ span: 6 }}
+                        wrapperCol={{ span: 18 }}
                     >
                         <Form.Item
                             label="Email"
@@ -100,12 +109,14 @@ export default function Login() {
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </Form.Item>
+                        <div style={styles.buttonContainer}>
 
-                        <Form.Item style={styles.formItem}>
-                            <Button type="primary" htmlType="submit" block style={styles.button}>
-                                Login
-                            </Button>
-                        </Form.Item>
+                            <Form.Item style={styles.formItem}>
+                                <Button type="primary" htmlType="submit" block>
+                                    Login
+                                </Button>
+                            </Form.Item>
+                        </div>
                     </Form>
 
                     {/* Register Button */}
