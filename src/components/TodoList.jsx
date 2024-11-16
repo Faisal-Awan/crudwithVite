@@ -1,4 +1,3 @@
-// components/TodoList.jsx
 import React from 'react';
 import { List, Row, Col, Card, Button, Typography } from 'antd';
 import TodoItem from './TodoItem';
@@ -6,7 +5,7 @@ import TodoItem from './TodoItem';
 const { Title } = Typography;
 
 const TodoList = ({ todos, onDelete, onToggle }) => {
-    // CSS in JS for styling
+
     const styles = {
         container: {
             padding: '20px',
@@ -14,7 +13,7 @@ const TodoList = ({ todos, onDelete, onToggle }) => {
         title: {
             textAlign: 'center',
             marginBottom: '20px',
-            color: '#1890ff', // Ant Design primary color
+            color: '#1890ff',
         },
         row: {
             display: 'flex',
@@ -52,7 +51,7 @@ const TodoList = ({ todos, onDelete, onToggle }) => {
                     <List
                         grid={{
                             gutter: 16,
-                            column: 1, // Set to 1 to show each item in full width per row
+                            column: 1,
                         }}
                         dataSource={todos}
                         renderItem={(todo) => (
