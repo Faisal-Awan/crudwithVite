@@ -32,9 +32,9 @@ export default function UserProfile() {
 
     const fetchUserProfile = async () => {
         try {
-            const response = await api.get('/auth/self'); // Update endpoint if necessary
+            const response = await api.get('/auth/self');
             console.log('Profile Response:', response.data);
-            setProfile(response.data?.data || {}); // Adjust based on API structure
+            setProfile(response.data?.data || {});
         } catch (error) {
             message.error('Failed to fetch user profile');
         } finally {
